@@ -23,10 +23,10 @@ const Home: NextPage = () => {
           {user ? (
             `hello ${user.data?.user.name}`
           ) : (
-            <button onClick={() => signIn()}> Sign In</button>
+            <button onClick={() => void signIn()}> Sign In</button>
           )}
-          <button onClick={() => signIn()}> Sign In</button>
-          <button onClick={() => signOut()}> Sign Out</button>
+          <button onClick={() => void signIn()}> Sign In</button>
+          <button onClick={() => void signOut()}> Sign Out</button>
           <br></br>
           {data
             ? data.map((e) => (
