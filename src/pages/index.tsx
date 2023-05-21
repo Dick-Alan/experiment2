@@ -9,7 +9,6 @@ const Home: NextPage = () => {
   const hello = api.example.hello.useQuery({ text: "from tRPC" });
   const { data, isLoading: postsLoading } = api.example.getAll.useQuery();
   console.log(typeof data);
-  if (!data) return null;
 
   return (
     <>
@@ -22,19 +21,24 @@ const Home: NextPage = () => {
         <div className="container flex flex-col items-center justify-center gap-12 px-4 py-16 ">
           test
           <br></br>
-          {data.map((e) => (
-            <div
-              className="flex grid-cols-3 border bg-black text-lime-600"
-              key={e.id}
-            >
-              <div className="border border-lime-600 px-1"> {e.id} </div>{" "}
-              <div className="border border-lime-600 px-1"> {e.content} </div>
-              <div className="border border-lime-600 px-1">
-                {" "}
-                {e.createdAt.toString()}{" "}
-              </div>
-            </div>
-          ))}
+          {data
+            ? data.map((e) => (
+                <div
+                  className="flex grid-cols-3 border bg-black text-lime-600"
+                  key={e.id}
+                >
+                  <div className="border border-lime-600 px-1"> {e.id} </div>{" "}
+                  <div className="border border-lime-600 px-1">
+                    {" "}
+                    {e.content}{" "}
+                  </div>
+                  <div className="border border-lime-600 px-1">
+                    {" "}
+                    {e.createdAt.toString()}{" "}
+                  </div>
+                </div>
+              ))
+            : ""}
         </div>
       </main>
     </>
