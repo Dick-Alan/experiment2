@@ -23,10 +23,10 @@ const Home: NextPage = () => {
           {user.data?.user.id ? (
             `hello ${user.data?.user.name}`
           ) : (
-            <button onClick={async () => await signIn()}> Sign In</button>
+            <button onClick={() => signIn()}> Sign In</button>
           )}
-          <button onClick={async () => await signIn()}> Sign In</button>
-          <button onClick={async () => await signOut()}> Sign Out</button>
+          <button onClick={() => signIn()}> Sign In</button>
+          <button onClick={() => signOut()}> Sign Out</button>
           <br></br>
           {data
             ? data.map((e) => (
