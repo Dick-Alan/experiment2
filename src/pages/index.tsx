@@ -6,10 +6,10 @@ import UserBlock from "~/components/userblock";
 import UsersBar from "~/components/users";
 import { api } from "~/utils/api";
 import LogInPage from "~/components/login";
-
+import InputBar from "~/components/input";
+import ChatView from "~/components/chatview";
 const Home: NextPage = () => {
-  const hello = api.example.hello.useQuery({ text: "from tRPC" });
-  const { data, isLoading: postsLoading } = api.example.getAll.useQuery();
+  const { data, isLoading: postsLoading } = api.post.getAll.useQuery();
   const user = useSession();
   if (!user.data) return <LogInPage></LogInPage>;
 
@@ -22,55 +22,18 @@ const Home: NextPage = () => {
       </Head>
       <main className="flex min-h-screen flex-col items-center justify-center bg-gradient-to-b from-[#043d0c] to-[#15162c]">
         <div className="container flex flex-col items-center justify-center gap-12 px-4 py-16 ">
-          <UserBlock />
+          <div className="absolute left-0 top-0">
+            <UserBlock />
+            <UsersBar />
+          </div>
+
           <br></br>
-          {data
-            ? data.map((e) => (
-                <div
-                  className="flex grid-cols-3 border bg-black text-lime-600"
-                  key={e.id}
-                >
-                  <div className="border border-lime-600 px-1"> {e.id} </div>{" "}
-                  <div className="border border-lime-600 px-1">
-                    {" "}
-                    {e.content}{" "}
-                  </div>
-                  <div className="border border-lime-600 px-1">
-                    {" "}
-                    {e.createdAt.toString()}{" "}
-                  </div>
-                </div>
-              ))
-            : ""}
         </div>
-        <UsersBar />
+        <ChatView userId={user.data.user.id}></ChatView>
+        <InputBar />
       </main>
     </>
   );
 };
 
 export default Home;
-
-const AuthShowcase: React.FC = () => {
-  const { data: sessionData } = useSession();
-
-  const { data: secretMessage } = api.example.getSecretMessage.useQuery(
-    undefined, // no input
-    { enabled: sessionData?.user !== undefined }
-  );
-
-  return (
-    <div className="flex flex-col items-center justify-center gap-4">
-      <p className="text-center text-2xl text-white">
-        {sessionData && <span>Logged in as {sessionData.user?.name}</span>}
-        {secretMessage && <span> - {secretMessage}</span>}
-      </p>
-      <button
-        className="rounded-full bg-white/10 px-10 py-3 font-semibold text-white no-underline transition hover:bg-white/20"
-        onClick={sessionData ? () => void signOut() : () => void signIn()}
-      >
-        {sessionData ? "Sign out" : "Sign in"}
-      </button>
-    </div>
-  );
-};
