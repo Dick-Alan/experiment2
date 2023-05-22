@@ -21,7 +21,9 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className="flex min-h-screen flex-col items-center justify-center bg-gradient-to-b from-[#043d0c] to-[#15162c]">
-        <div className="container flex flex-col items-center justify-center gap-12 px-4 py-16 ">
+        <div className="container flex flex-col items-center justify-center px-4  ">
+          <ChatView userId={user.data.user.id}></ChatView>
+          <InputBar />
           <div className="absolute left-0 top-0">
             <UserBlock />
             <UsersBar />
@@ -29,8 +31,6 @@ const Home: NextPage = () => {
 
           <br></br>
         </div>
-        <ChatView userId={user.data.user.id}></ChatView>
-        <InputBar />
       </main>
     </>
   );

@@ -1,4 +1,5 @@
 import { api } from "~/utils/api";
+import { useEffect, useRef } from "react";
 const GetUserName = (props: { id: string }) => {
   const id = props.id;
   const user = api.user.getById.useQuery({ id });
@@ -16,12 +17,28 @@ const GetUserName = (props: { id: string }) => {
   );
 };
 const ChatView = (props: { userId: string }) => {
+  const ctx = api.useContext();
+  const messagesEndRef = useRef<null | HTMLDivElement>(null);
   const { data } = api.post.getAll.useQuery();
   const users = api.user.getAll.useQuery();
   const currentUser = props.userId;
+  const refreshData = () => {
+    ctx.post.getAll.invalidate();
+  };
+  const scrollToBottom = () => {
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  };
+  //   setInterval(function () {
+  //     //code goes here that will be run every 5 seconds.
+  //     refreshData();
+  //   }, 1000);
+
+  useEffect(() => {
+    scrollToBottom();
+  }, [data]);
 
   return (
-    <div className="flex w-2/4 grid-cols-2 flex-col     rounded-md bg-black p-4 text-lime-400">
+    <div className=" mt-10 flex max-h-[300px] w-3/4 grid-cols-2  flex-col overflow-y-scroll rounded-md bg-black p-4 text-lime-400">
       {data?.map((e) =>
         e.authorId === props.userId ? (
           <div className="flex justify-end" key={e.id}>
@@ -46,6 +63,7 @@ const ChatView = (props: { userId: string }) => {
           </div>
         )
       )}
+      <div ref={messagesEndRef} />
     </div>
   );
 };

@@ -23,10 +23,8 @@ const InputBar = () => {
   return (
     <div>
       <div className="flex-grid w-full ">
-        <textarea
-          cols={1}
-          wrap="hard"
-          className=" z-10 m-1 mb-5 h-[150px] w-[300px] grow rounded-sm bg-gray-900 bg-opacity-50 p-1 outline-none"
+        <input
+          className=" z-10 m-1 mb-5  h-[50px] w-[200px] grow rounded-sm bg-gray-900 bg-opacity-50 p-1 outline-none"
           placeholder="Type message"
           value={input}
           onChange={(e) => setInput(e.target.value)}
@@ -40,7 +38,7 @@ const InputBar = () => {
                 className="rounded-md bg-slate-800 px-3 text-slate-300 hover:border hover:bg-green-500"
                 onClick={() => mutate({ content: input })}
               >
-                Post
+                SEND
               </button>
             </div>
           )}
