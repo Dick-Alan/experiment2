@@ -22,16 +22,10 @@ const ChatView = (props: { userId: string }) => {
   const { data } = api.post.getAll.useQuery();
   const users = api.user.getAll.useQuery();
   const currentUser = props.userId;
-  const refreshData = () => {
-    ctx.post.getAll.invalidate();
-  };
+
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   };
-  //   setInterval(function () {
-  //     //code goes here that will be run every 5 seconds.
-  //     refreshData();
-  //   }, 1000);
 
   useEffect(() => {
     scrollToBottom();
