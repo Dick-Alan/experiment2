@@ -11,7 +11,7 @@ const UsersBar = () => {
       {users.data.map((e) => (
         <div key={e.id} className="flex grid-cols-2 gap-1 p-1">
           {" "}
-          <img src={e.image} className="h-[30px] w-[30px]" />
+          <img src={e.image || ""} className="h-[30px] w-[30px]" />
           <div>{e.name}</div>
         </div>
       ))}
