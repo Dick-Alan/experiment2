@@ -1,12 +1,21 @@
 import { signIn, signOut, useSession } from "next-auth/react";
 import Image from "next/image";
-import LogInPage from "./login";
 
 const UserBlock = () => {
   const user = useSession();
 
   if (!user.data) {
-    return <LogInPage />;
+    return (
+      <div className="flex flex-col rounded-sm border border-lime-400 bg-black text-lime-400">
+        <div className="m-2">Not logged in!</div>
+        <button
+          className="m-2 rounded-md border border-lime-400 px-1"
+          onClick={() => void signIn()}
+        >
+          Log In
+        </button>
+      </div>
+    );
   } else {
     return (
       <div className="flex flex-col  rounded-sm border border-lime-400 bg-black p-1 text-lime-400">

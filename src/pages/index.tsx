@@ -5,15 +5,14 @@ import { signIn, signOut, useSession } from "next-auth/react";
 import UserBlock from "~/components/userblock";
 import UsersBar from "~/components/users";
 import { api } from "~/utils/api";
-import LogInPage from "~/components/login";
+
 import InputBar from "~/components/input";
 import ChatView from "~/components/chatview";
 
 const Home: NextPage = () => {
   const { data, isLoading: postsLoading } = api.post.getAll.useQuery();
   const user = useSession();
-  if (!user.data) return <LogInPage></LogInPage>;
-
+  const userId = user.data ? user.data.user.id : "";
   return (
     <>
       <Head>
@@ -23,7 +22,7 @@ const Home: NextPage = () => {
       </Head>
       <main className="flex max-h-screen  grid-cols-2  items-center justify-center bg-gradient-to-b from-[#043d0c] to-[#15162c]">
         <div className="container flex max-h-screen flex-col items-center justify-center rounded-md border bg-black px-4  ">
-          <ChatView userId={user.data.user.id}></ChatView>
+          <ChatView userId={userId}></ChatView>
           <InputBar />
         </div>
         <div className="left-0 top-0">
