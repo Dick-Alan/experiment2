@@ -2,7 +2,6 @@ import { useState } from "react";
 import { api } from "~/utils/api";
 import { signIn, useSession } from "next-auth/react";
 import toast from "react-hot-toast";
-import Client from "./client";
 
 import { useContext } from "react";
 const InputBar = () => {
