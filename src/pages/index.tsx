@@ -21,10 +21,14 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className="flex max-h-screen  grid-cols-2  items-center justify-center bg-gradient-to-b from-[#043d0c] to-[#15162c]">
-        <div className="container flex max-h-screen flex-col items-center justify-center rounded-md border bg-black px-4  ">
-          <div className="flex grid-cols-2 gap-10">
-            <UserBlock />
-            <UsersBar />
+        <div className="container flex max-h-screen flex-col items-center justify-center rounded-md border-x-2 border-lime-400 bg-black px-4  ">
+          <div className="flex grid-cols-2 text-xs">
+            <div className="flex justify-start">
+              <UserBlock />
+            </div>
+            <div className="flex justify-end">
+              <UsersBar />
+            </div>
           </div>
           <ChatView userId={userId}></ChatView>
           <InputBar />

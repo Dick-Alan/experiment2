@@ -8,10 +8,12 @@ const UsersBar = () => {
   return (
     <div className="justify-end bg-black p-2 text-lime-400">
       <button
-        className="rounded-md border border-lime-400 p-2"
+        className="flex grid-cols-2 gap-2 rounded-md border border-lime-400 p-2  "
         onClick={() => setViewUsers(!viewUsers)}
       >
-        Users
+        <div> user list </div>
+
+        <div className="font-mono">{viewUsers ? `[-]` : `[+]`}</div>
       </button>
       {viewUsers ? (
         <div className="absolute ml-5 rounded-md border border-lime-400 bg-black p-2">

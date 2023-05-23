@@ -12,8 +12,8 @@ const UserBlock = () => {
     );
   } else {
     return (
-      <div className="mt-2 flex grid-cols-3 rounded-sm border border-lime-400 bg-black p-1 text-lime-400">
-        <div className="m-1 flex grid-cols-2 p-1">
+      <div className="b  flex grid-cols-3 rounded-sm bg-black p-1 text-lime-400">
+        <div className=" flex grid-cols-2 p-1">
           <img
             src={user.data?.user.image || ""}
             className="h-[30px] w-[30px] rounded-full"
@@ -21,7 +21,7 @@ const UserBlock = () => {
           <div>{user.data?.user.name}</div>
         </div>
         <button
-          className="m-1 rounded-sm border px-1"
+          className="m-1 rounded-md  border border-lime-400 px-1"
           onClick={() => void signOut()}
         >
           Log Out

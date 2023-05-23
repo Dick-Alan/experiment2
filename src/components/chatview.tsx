@@ -36,7 +36,7 @@ const ChatView = (props: { userId: string }) => {
   }, [data]);
 
   return (
-    <div className=" mt-5 flex max-h-fit w-full grid-cols-2 flex-col overflow-y-scroll rounded-md  border  bg-black p-4 text-lime-400">
+    <div className=" mt-5 flex max-h-fit w-full grid-cols-2 flex-col overflow-y-scroll rounded-md  border-y-2 border-lime-400  bg-black p-4 text-lime-400">
       {data?.map((e) =>
         e.authorId === props.userId ? (
           <div className="flex justify-end" key={e.id}>
