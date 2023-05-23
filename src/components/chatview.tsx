@@ -44,8 +44,13 @@ const ChatView = (props: { userId: string }) => {
               <div className="flex justify-end">
                 <GetUserName id={e.authorId}></GetUserName>
               </div>
-              <div className=" m-1 rounded-md border p-2"> {e.content} </div>
-              <div className="my-1 text-xs">{dayjs(e.createdAt).fromNow()}</div>
+              <div className=" m-1 rounded-md border border-gray-900 p-2">
+                {" "}
+                {e.content}{" "}
+              </div>
+              <div className="my-1 flex justify-end text-xs">
+                {dayjs(e.createdAt).fromNow()}
+              </div>
             </div>
           </div>
         ) : (
@@ -54,7 +59,7 @@ const ChatView = (props: { userId: string }) => {
               <div className="flex">
                 <GetUserName id={e.authorId}></GetUserName>
               </div>
-              <div className="m-1 rounded-md border bg-gray-900 p-1 p-2">
+              <div className="m-1 rounded-md border border-gray-800 bg-gray-900 p-1 p-2">
                 {" "}
                 {e.content}{" "}
               </div>
