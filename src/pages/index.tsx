@@ -22,12 +22,12 @@ const Home: NextPage = () => {
       </Head>
       <main className="flex max-h-screen  grid-cols-2  items-center justify-center bg-gradient-to-b from-[#043d0c] to-[#15162c]">
         <div className="container flex max-h-screen flex-col items-center justify-center rounded-md border bg-black px-4  ">
+          <div className="flex grid-cols-2 gap-10">
+            <UserBlock />
+            <UsersBar />
+          </div>
           <ChatView userId={userId}></ChatView>
           <InputBar />
-        </div>
-        <div className="left-0 top-0">
-          <UserBlock />
-          <UsersBar />
         </div>
       </main>
     </>

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { api } from "~/utils/api";
-import { useSession } from "next-auth/react";
+import { signIn, useSession } from "next-auth/react";
 import toast from "react-hot-toast";
 
 import { useContext } from "react";
@@ -23,7 +23,18 @@ const InputBar = () => {
       }
     },
   });
-  if (!user.data) return null;
+  if (!user.data)
+    return (
+      <div className="flex flex-col text-lime-400">
+        <div>Log in to message.</div>
+        <button
+          className="m-1 rounded-sm border border-lime-400 px-2"
+          onClick={() => void signIn()}
+        >
+          Log In
+        </button>
+      </div>
+    );
   return (
     <div className="flex grid-cols-2">
       <div className="flex w-full ">
