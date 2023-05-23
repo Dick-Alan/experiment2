@@ -14,7 +14,7 @@ const UserBlock = () => {
         <div className="m-1 flex grid-cols-2 p-1">
           <img
             src={user.data?.user.image || ""}
-            className="h-[30px] w-[30px]"
+            className="h-[30px] w-[30px] rounded-full"
           ></img>
           <div>{user.data?.user.name}</div>
         </div>

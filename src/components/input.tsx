@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { api } from "~/utils/api";
 import toast from "react-hot-toast";
+
 import { useContext } from "react";
 const InputBar = () => {
   const [input, setInput] = useState("");
@@ -21,10 +22,10 @@ const InputBar = () => {
     },
   });
   return (
-    <div>
-      <div className="flex-grid w-full ">
+    <div className="flex grid-cols-2">
+      <div className="flex w-full ">
         <input
-          className=" z-10 m-1 mb-5  h-[50px] w-[200px] grow rounded-sm bg-gray-900 bg-opacity-50 p-1 outline-none"
+          className=" z-10 m-1 mb-5  h-[50px] w-[200px] grow rounded-sm bg-gray-900 bg-opacity-50 p-1 text-lime-400 outline-none"
           placeholder="Type message"
           value={input}
           onChange={(e) => setInput(e.target.value)}
@@ -35,7 +36,7 @@ const InputBar = () => {
           {input !== "" && !isPosting && (
             <div>
               <button
-                className="rounded-md bg-slate-800 px-3 text-slate-300 hover:border hover:bg-green-500"
+                className="my-2 rounded-md bg-slate-800 px-3 text-slate-300 hover:border hover:bg-lime-400"
                 onClick={() => mutate({ content: input })}
               >
                 SEND

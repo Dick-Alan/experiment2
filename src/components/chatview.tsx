@@ -1,5 +1,9 @@
 import { api } from "~/utils/api";
 import { useEffect, useRef } from "react";
+import dayjs from "dayjs";
+import relativeTime from "dayjs/plugin/relativeTime";
+import InputBar from "./input";
+dayjs.extend(relativeTime);
 const GetUserName = (props: { id: string }) => {
   const id = props.id;
   const user = api.user.getById.useQuery({ id });
@@ -32,7 +36,7 @@ const ChatView = (props: { userId: string }) => {
   }, [data]);
 
   return (
-    <div className=" mt-10 flex max-h-[300px] w-3/4 grid-cols-2  flex-col overflow-y-scroll rounded-md bg-black p-4 text-lime-400">
+    <div className=" mt-5 flex max-h-fit w-full grid-cols-2 flex-col overflow-y-scroll rounded-md  border  bg-black p-4 text-lime-400">
       {data?.map((e) =>
         e.authorId === props.userId ? (
           <div className="flex justify-end" key={e.id}>
@@ -41,6 +45,7 @@ const ChatView = (props: { userId: string }) => {
                 <GetUserName id={e.authorId}></GetUserName>
               </div>
               <div className=" m-1 rounded-md border p-2"> {e.content} </div>
+              <div className="my-1 text-xs">{dayjs(e.createdAt).fromNow()}</div>
             </div>
           </div>
         ) : (
@@ -53,6 +58,7 @@ const ChatView = (props: { userId: string }) => {
                 {" "}
                 {e.content}{" "}
               </div>
+              <div className="my-1 text-xs">{dayjs(e.createdAt).fromNow()}</div>
             </div>
           </div>
         )
