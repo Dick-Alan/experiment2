@@ -1,9 +1,11 @@
 import { useState } from "react";
 import { api } from "~/utils/api";
+import { useSession } from "next-auth/react";
 import toast from "react-hot-toast";
 
 import { useContext } from "react";
 const InputBar = () => {
+  const user = useSession();
   const [input, setInput] = useState("");
   const ctx = api.useContext();
   const { mutate, isLoading: isPosting } = api.post.create.useMutation({
@@ -21,6 +23,7 @@ const InputBar = () => {
       }
     },
   });
+  if (!user.data) return null;
   return (
     <div className="flex grid-cols-2">
       <div className="flex w-full ">
